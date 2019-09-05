@@ -173,3 +173,16 @@ def preprocess_voxceleb2(datasets_root: Path, out_dir: Path, skip_existing=False
     speaker_dirs = list(dataset_root.joinpath("dev", "aac").glob("*"))
     _preprocess_speaker_dirs(speaker_dirs, dataset_name, datasets_root, out_dir, "m4a",
                              skip_existing, logger)
+
+def preprocess_ptbr(datasets_root: Path, out_dir: Path, skip_existing=False):
+    # Initialize the preprocessing
+    dataset_name = "ptbr"
+    dataset_root, logger = _init_preprocess_dataset(dataset_name, datasets_root, out_dir)
+    if not dataset_root:
+        return
+    
+    # Get the speaker directories
+    # Preprocess all speakers
+    speaker_dirs = list(dataset_root.joinpath("books").glob("*"))
+    _preprocess_speaker_dirs(speaker_dirs, dataset_name, datasets_root, out_dir, "mp3",
+                             skip_existing, logger)
